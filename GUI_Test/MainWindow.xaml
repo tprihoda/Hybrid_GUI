@@ -1,0 +1,265 @@
+﻿<Window x:Class="GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d" Height="1080" Width="1920"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Window.Resources>
+        <Style x:Key="NoHighlight" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle">
+                <Setter.Value>
+                    <Style>
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Rectangle Margin="2" SnapsToDevicePixels="True" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="#FFDDDDDD"/>
+            <Setter Property="BorderBrush" Value="#FF707070"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#FFC4E5F6"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FF2C628B"/>
+                            </Trigger>
+                            <Trigger Property="ToggleButton.IsChecked" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
+                                <Setter Property="Foreground" Value="#FF838383"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="277.5"/>
+            <ColumnDefinition Width="277.5"/>
+            <ColumnDefinition Width="750"/>
+            <ColumnDefinition Width="277.5"/>
+            <ColumnDefinition Width="277.5"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="148" />
+            <RowDefinition Height="148" />
+            <RowDefinition Height="148" />
+            <RowDefinition Height="148" />
+            <RowDefinition Height="148" />
+            <RowDefinition Height="148" />
+            <RowDefinition Height="148" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <Button x:Name="Caution_Button" Style="{StaticResource NoHighlight}" Content="Caution" Grid.Column="2" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Center" Width="176" Height="62" />
+        <Button x:Name="Warning_Button" Style="{StaticResource NoHighlight}" Margin="0,0,10,0" Content="Warning" Grid.Column="3" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Center" Width="176" Height="64"/>
+        
+        <Rectangle Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" Fill="Black" Height="2" />
+        
+        <Button x:Name="Approach_Button" Style="{StaticResource NoHighlight}" Content="Approach Config" Grid.Column="2" HorizontalAlignment="Center"  Grid.Row="3" VerticalAlignment="Center" Width="176" Height="62"/>
+        <Button x:Name="Break_Button" Style="{StaticResource NoHighlight}" Margin="0,0,10,0" Content="Break" Grid.Column="3" HorizontalAlignment="Center"  Grid.Row="3" VerticalAlignment="Center" Width="176" Height="64"/>
+        
+        <Rectangle Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Stretch" Fill="Black" Height="2" />
+        
+        <TextBlock Text="State:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4" FontSize="40" />
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="4" BorderBrush="Black" BorderThickness="1" Margin="0,0,10,0" Padding="10">
+            <TextBlock x:Name="State_Display" Text="Placeholder"  FontSize="40"/>
+        </Border>
+        
+        
+        <Rectangle Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="5" VerticalAlignment="Top" HorizontalAlignment="Stretch" Fill="Black" Height="2" />
+        
+        <Button x:Name="Fill_Button" Style="{StaticResource NoHighlight}" Content="Fill" Grid.Column="2" HorizontalAlignment="Center"  Grid.Row="5" VerticalAlignment="Center" Width="176" Height="62"/>
+        <Button x:Name="Fill_Disconnect_Button" Style="{StaticResource NoHighlight}" Content="Fill Arm Disconnect" Grid.Column="2" HorizontalAlignment="Center"  Grid.Row="6" VerticalAlignment="Center" Width="176" Height="64"/>
+        <Button x:Name="Door_Button" Style="{StaticResource NoHighlight}" Content="Fill Door Close" Grid.Column="2" HorizontalAlignment="Center"  Grid.Row="7" VerticalAlignment="Center" Width="176" Height="62"/>
+        <Button x:Name="Launch_Button" Style="{StaticResource NoHighlight}" Content="Launch" Grid.Column="2" HorizontalAlignment="Center"  Grid.Row="8" VerticalAlignment="Center" Width="176" Height="64"/>
+        <StackPanel x:Name="Sequence_Stack" Margin="0,0,10,0" Grid.Column="3" Background="White" Height="500" Width="300" HorizontalAlignment="Center"  Grid.Row="5" Grid.RowSpan="4" VerticalAlignment="Center">
+            
+        </StackPanel>
+
+
+        <Button x:Name="Pad_Connect_Button" Content="Pad Connect" Grid.Column="5" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Center" Width="176" Height="62"/>
+        <Button x:Name="Radio_Connect_Button" Content="Raido Connect" Grid.Column="6" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Center" Width="176" Height="62"/>
+
+        <Rectangle Grid.Column="5" Grid.ColumnSpan="4" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" Fill="Black" Height="2" />
+        
+        <Grid Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Text="Gyroscope Data" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
+
+            <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="X" HorizontalAlignment="Center" FontSize="25"/>
+                <TextBlock Text="N/A" HorizontalAlignment="Center" FontSize="25"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Y" HorizontalAlignment="Center" FontSize="25"/>
+                <TextBlock Text="N/A" HorizontalAlignment="Center" FontSize="25"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Z" HorizontalAlignment="Center" FontSize="25"/>
+                <TextBlock Text="N/A" HorizontalAlignment="Center" FontSize="25"/>
+            </StackPanel>
+        </Grid>
+
+        <Rectangle Grid.Column="5" Grid.ColumnSpan="4" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Stretch" Fill="Black" Height="2" />
+        
+        <StackPanel Grid.Column="5" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Velocity" HorizontalAlignment="Center" FontSize="30"/>
+            <TextBlock Text="N/A" HorizontalAlignment="Center" FontSize="30"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="6" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Acceleration" HorizontalAlignment="Center" FontSize="30"/>
+            <TextBlock Text="N/A" HorizontalAlignment="Center" FontSize="30"/>
+        </StackPanel>
+
+        <Rectangle Grid.Column="5" Grid.ColumnSpan="4" Grid.Row="5" VerticalAlignment="Top" HorizontalAlignment="Stretch" Fill="Black" Height="2" />
+
+        <StackPanel Grid.Column="5" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Latitude" HorizontalAlignment="Center" FontSize="30"/>
+            <TextBlock Text="N/A" HorizontalAlignment="Center" FontSize="30"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="6" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Longitude" HorizontalAlignment="Center" FontSize="30"/>
+            <TextBlock Text="N/A" HorizontalAlignment="Center" FontSize="30"/>
+        </StackPanel>
+
+        <Rectangle Grid.Column="5" Grid.ColumnSpan="4" Grid.Row="6" VerticalAlignment="Top" HorizontalAlignment="Stretch" Fill="Black" Height="2" />
+
+        <local:WpfGraphControl x:Name="Graph" Margin="10" Controller="{Binding Controller}" Grid.Column="5" Grid.ColumnSpan="4" Grid.Row="6" Grid.RowSpan="3" />
+
+        <Rectangle Grid.Column="5" Grid.ColumnSpan="4" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Stretch" Fill="Black" Height="2" />
+
+        <Rectangle Grid.Column="3" Grid.Row="2" Grid.RowSpan="8" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="Black" Width="2" />
+
+        <Image x:Name="Rocket_Image" VerticalAlignment="Center" HorizontalAlignment="Center" Height="1080" Grid.Column="4" Grid.Row="2" Grid.RowSpan="7"  Width="640"/>
+        <Image x:Name="Fill_Valve" VerticalAlignment="Center" HorizontalAlignment="Center" Height="60"  Width="60" Margin="205,-31,0,0" Grid.Column="4" Grid.Row="2" Grid.RowSpan="7"/>
+        <Image x:Name="Glow_Plug" VerticalAlignment="Center" HorizontalAlignment="Center" Height="30"  Width="30" Margin="-95,105,0,0" Grid.Column="4" Grid.Row="2" Grid.RowSpan="7" />
+        <Image x:Name="Tank_Vent" VerticalAlignment="Center" HorizontalAlignment="Center" Height="27"  Width="26" Margin="-224,-720,0,0" Grid.Column="4" Grid.Row="2" Grid.RowSpan="7" RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="Propane_Valve" VerticalAlignment="Center" HorizontalAlignment="Left" Height="47"  Width="47" Margin="101,100,0,0" Grid.Column="4" Grid.Row="2" Grid.RowSpan="7" RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="Fill_Vent_Valve" VerticalAlignment="Center" HorizontalAlignment="Center" Height="27"  Width="26" Margin="305,-135,0,0" Grid.Column="4" Grid.Row="2" Grid.RowSpan="7" RenderTransformOrigin="0.5,0.5" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="Servo_element"  Height="37" Width="37" Margin="-163,15,0,0" Grid.Column="4" Grid.Row="2" Grid.RowSpan="7" />
+        <Image x:Name="Contact" Height="35" Width="35" Margin="90,-31,0,0" Grid.Column="4" Grid.Row="2" Grid.RowSpan="7" />
+        <Image x:Name="Tank_Level_Image" MaxWidth="147" MaxHeight="400" Margin="-170,-270,0,0"  Grid.Column="4" Grid.Row="2" Grid.RowSpan="7" />
+
+        <Border Grid.Column="4" Grid.Row="5" Margin="650,60,20,60" BorderBrush="Black" BorderThickness="1" Padding="2">
+            <StackPanel Margin ="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock x:Name="T1_Display" Text="T1: N/A"/>
+            </StackPanel>
+        </Border>
+        
+        <Border Grid.Column="4" Grid.Row="6" Margin="400,0,270,100" BorderBrush="Black" BorderThickness="1" Padding="2">
+            <StackPanel Margin ="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock x:Name="P4_Display" Text="P4: N/A"/>
+                <TextBlock x:Name="T5_Display" Text="T5: N/A"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Column="4" Grid.Row="7" Margin="400,110,270,10" BorderBrush="Black" BorderThickness="1" Padding="2">
+            <StackPanel Margin ="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock x:Name="T6_Display" Text="T6: N/A"/>
+            </StackPanel>
+        </Border>
+
+
+        <Border Grid.Column="4" Grid.Row="5" Margin="110,0,560,100" BorderBrush="Black" BorderThickness="1" Padding="2">
+            <StackPanel Margin ="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock x:Name="P3_Display" Text="P3: N/A"/>
+                <TextBlock x:Name="T4_Display" Text="T4: N/A"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Column="4" Grid.RowSpan="2" Grid.Row="4" Margin="570,120,100,130" BorderBrush="Black" BorderThickness="1" Padding="2">
+            <StackPanel Margin ="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock x:Name="P1_Display" Text="T1: N/A" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="T2_Display" Text="T2: N/A"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Column="4" Grid.Row="3" Margin="400,0,270,100" BorderBrush="Black" BorderThickness="1" Padding="2">
+            <StackPanel Margin ="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock x:Name="P2_Display" Text="P2: N/A"/>
+                <TextBlock x:Name="T3_Display" Text="T3: N/A"/>
+            </StackPanel>
+        </Border>
+
+
+        <Rectangle Margin="0,0,0,0" Grid.Column="4" Grid.Row="2" Grid.RowSpan="8" VerticalAlignment="Stretch" HorizontalAlignment="Right" Fill="Black" Width="2" />
+
+        <Grid.Background>
+            <SolidColorBrush Color="Gray"/>
+        </Grid.Background>
+    </Grid>
+
+</Window>
